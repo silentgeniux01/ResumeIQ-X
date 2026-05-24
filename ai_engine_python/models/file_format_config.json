@@ -1,0 +1,117 @@
+{
+  "config_version": "1.0.0",
+
+  "supported_formats": {
+
+    "text_documents": [
+      "txt"
+    ],
+
+    "pdf_documents": [
+      "pdf"
+    ],
+
+    "word_documents": [
+      "docx"
+    ],
+
+    "image_documents": [
+      "png",
+      "jpg",
+      "jpeg"
+    ]
+  },
+
+
+  "parser_priority": {
+
+    "pdf": [
+      "pymupdf",
+      "pdfplumber",
+      "ocr"
+    ],
+
+    "docx": [
+      "python-docx"
+    ],
+
+    "txt": [
+      "native_reader"
+    ],
+
+    "images": [
+      "tesseract_ocr"
+    ]
+  },
+
+
+  "ocr_settings": {
+
+    "enabled": true,
+
+    "engine": "tesseract",
+
+    "languages": [
+      "eng"
+    ],
+
+    "fallback_for": [
+      "pdf",
+      "png",
+      "jpg",
+      "jpeg"
+    ]
+  },
+
+
+  "layout_analysis": {
+
+    "detect_tables": false,
+
+    "detect_sections": true,
+
+    "preserve_structure": false
+  },
+
+
+  "file_validation_rules": {
+
+    "max_file_size_mb": 10,
+
+    "reject_encrypted_pdfs": true,
+
+    "reject_empty_files": true
+  },
+
+
+  "future_parser_extensions": {
+
+    "linkedin_pdf_support": true,
+
+    "canva_resume_support": true,
+
+    "europass_resume_support": true,
+
+    "google_docs_export_support": true
+  },
+
+
+  "cloud_parser_support": {
+
+    "enable_gcp_document_ai": false,
+
+    "enable_aws_textract": false,
+
+    "enable_azure_form_recognizer": false
+  },
+
+
+  "experimental_features": {
+
+    "resume_layout_segmentation": false,
+
+    "multi_column_detection": false,
+
+    "semantic_section_detection": true
+  }
+}

@@ -1,0 +1,281 @@
+/* ======================================================
+ResumeIQ-X Upload Page Styling
+AI Document Intelligence Upload Interface
+Production Grade UI Layer
+====================================================== */
+
+
+/* ======================================================
+UPLOAD PAGE CONTAINER
+====================================================== */
+
+.upload-container{
+
+max-width:520px;
+
+margin:80px auto;
+
+padding:45px;
+
+background:white;
+
+border-radius:18px;
+
+box-shadow:
+
+0px 12px 45px rgba(0,0,0,0.08);
+
+transition:0.35s ease;
+
+}
+
+
+.upload-container:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+
+0px 18px 60px rgba(0,0,0,0.12);
+
+}
+
+
+/* ======================================================
+TITLE
+====================================================== */
+
+.upload-container h2{
+
+font-size:26px;
+
+margin-bottom:12px;
+
+color:#0f172a;
+
+}
+
+
+.upload-container p{
+
+color:#64748b;
+
+margin-bottom:25px;
+
+font-size:15px;
+
+}
+
+
+/* ======================================================
+UPLOAD BOX
+====================================================== */
+
+.file-box{
+
+border:2px dashed #cbd5e1;
+
+padding:30px;
+
+border-radius:14px;
+
+cursor:pointer;
+
+background:#f8fafc;
+
+transition:0.3s ease;
+
+font-size:15px;
+
+}
+
+
+.file-box:hover{
+
+background:#eef2ff;
+
+border-color:#6366f1;
+
+}
+
+
+/* ======================================================
+FILE NAME DISPLAY
+====================================================== */
+
+#fileName{
+
+margin-top:12px;
+
+font-size:14px;
+
+color:#2563eb;
+
+font-weight:500;
+
+}
+
+
+/* ======================================================
+UPLOAD BUTTON
+====================================================== */
+
+.upload-container button{
+
+margin-top:25px;
+
+width:100%;
+
+padding:14px;
+
+border:none;
+
+border-radius:10px;
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#0ea5e9,
+
+#6366f1
+
+);
+
+color:white;
+
+font-size:16px;
+
+font-weight:500;
+
+cursor:pointer;
+
+transition:0.25s ease;
+
+}
+
+
+.upload-container button:hover{
+
+transform:scale(1.02);
+
+box-shadow:
+
+0px 6px 20px rgba(0,0,0,0.15);
+
+}
+
+
+/* ======================================================
+STATUS MESSAGE
+====================================================== */
+
+#status{
+
+margin-top:18px;
+
+font-size:14px;
+
+color:#334155;
+
+font-weight:500;
+
+white-space:pre-line;
+
+}
+
+
+/* ======================================================
+PROGRESS BAR
+====================================================== */
+
+.progress{
+
+margin-top:20px;
+
+height:12px;
+
+width:100%;
+
+background:#e2e8f0;
+
+border-radius:30px;
+
+overflow:hidden;
+
+display:none;
+
+}
+
+
+.progress-fill{
+
+height:100%;
+
+width:0%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#0ea5e9,
+
+#6366f1
+
+);
+
+transition:0.5s ease;
+
+}
+
+
+/* ======================================================
+UPLOAD SUCCESS STATE
+====================================================== */
+
+.success{
+
+color:#16a34a;
+
+}
+
+
+.error{
+
+color:#dc2626;
+
+}
+
+
+/* ======================================================
+DRAG & DROP VISUAL FEEDBACK (Future ready)
+====================================================== */
+
+.drag-active{
+
+background:#eef2ff !important;
+
+border-color:#4f46e5 !important;
+
+}
+
+
+/* ======================================================
+RESPONSIVE DESIGN
+====================================================== */
+
+@media(max-width:768px){
+
+.upload-container{
+
+margin:40px 20px;
+
+padding:30px;
+
+}
+
+}

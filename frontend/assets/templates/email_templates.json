@@ -1,0 +1,32 @@
+[
+  {
+    "id": "interview_invitation",
+    "name": "Interview Invitation",
+    "subject": "Interview Invitation — {{job_title}} at {{company_name}}",
+    "body": "Dear {{candidate_name}},\n\nWe are pleased to invite you for an interview for the position of {{job_title}} at {{company_name}}.\n\nInterview Details:\n📅 Date: {{interview_date}}\n⏰ Time: {{interview_time}}\n📍 Location: {{interview_location}}\n\nPlease confirm your availability by replying to this email.\n\nWe look forward to meeting you!\n\nBest regards,\n{{recruiter_name}}\n{{company_name}}"
+  },
+  {
+    "id": "acceptance_notification",
+    "name": "Acceptance Notification",
+    "subject": "Congratulations! You've been selected — {{job_title}}",
+    "body": "Dear {{candidate_name}},\n\nCongratulations! We are delighted to inform you that you have been selected for the position of {{job_title}} at {{company_name}}.\n\nWe were impressed by your profile and believe you will be a great addition to our team.\n\nOur HR team will contact you shortly with further details regarding the offer and onboarding process.\n\nWelcome aboard!\n\nBest regards,\n{{recruiter_name}}\n{{company_name}}"
+  },
+  {
+    "id": "rejection_notification",
+    "name": "Rejection Notification",
+    "subject": "Application Update — {{job_title}} at {{company_name}}",
+    "body": "Dear {{candidate_name}},\n\nThank you for your interest in the {{job_title}} position at {{company_name}} and for taking the time to apply.\n\nAfter careful consideration, we regret to inform you that we will not be moving forward with your application at this time. This was a difficult decision as we received many strong applications.\n\nWe encourage you to apply for future openings that match your skills and experience.\n\nWe wish you all the best in your job search.\n\nBest regards,\n{{recruiter_name}}\n{{company_name}}"
+  },
+  {
+    "id": "follow_up",
+    "name": "Follow-Up",
+    "subject": "Following up on your application — {{job_title}}",
+    "body": "Dear {{candidate_name}},\n\nI hope this message finds you well. I am following up regarding your application for the {{job_title}} position at {{company_name}}.\n\nWe are still reviewing applications and will be in touch soon with an update on your status.\n\nThank you for your patience.\n\nBest regards,\n{{recruiter_name}}\n{{company_name}}"
+  },
+  {
+    "id": "custom",
+    "name": "Custom Message",
+    "subject": "",
+    "body": ""
+  }
+]

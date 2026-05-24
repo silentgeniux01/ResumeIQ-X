@@ -1,0 +1,105 @@
+{
+  "scoring_model_version": "1.0.0",
+
+  "resume_strength_weights": {
+
+    "skill_strength_weight": 0.30,
+
+    "semantic_alignment_weight": 0.30,
+
+    "confidence_score_weight": 0.20,
+
+    "domain_strength_weight": 0.10,
+
+    "career_readiness_weight": 0.10
+
+  },
+
+  "confidence_model_weights": {
+
+    "skill_density_weight": 0.25,
+
+    "semantic_alignment_weight": 0.35,
+
+    "skill_maturity_weight": 0.15,
+
+    "domain_coverage_weight": 0.15,
+
+    "domain_balance_weight": 0.10
+
+  },
+
+  "career_readiness_weights": {
+
+    "domain_distribution_weight": 0.50,
+
+    "skill_maturity_weight": 0.30,
+
+    "semantic_alignment_weight": 0.20
+
+  },
+
+  "talent_score_weights": {
+
+    "resume_strength_weight": 0.40,
+
+    "confidence_weight": 0.25,
+
+    "semantic_alignment_weight": 0.20,
+
+    "career_readiness_weight": 0.15
+
+  },
+
+  "semantic_alignment_thresholds": {
+
+    "strong_alignment_threshold": 0.75,
+
+    "moderate_alignment_threshold": 0.55,
+
+    "weak_alignment_threshold": 0.30
+
+  },
+
+  "resume_strength_thresholds": {
+
+    "elite_resume_threshold": 85,
+
+    "strong_resume_threshold": 70,
+
+    "moderate_resume_threshold": 50
+
+  },
+
+  "confidence_thresholds": {
+
+    "high_confidence_threshold": 0.80,
+
+    "moderate_confidence_threshold": 0.55
+
+  },
+
+  "skill_gap_thresholds": {
+
+    "low_gap_threshold": 0.80,
+
+    "moderate_gap_threshold": 0.50
+
+  },
+
+  "domain_strength_baselines": {
+
+    "expected_domains": 4,
+
+    "max_domains": 6
+
+  },
+
+  "skill_strength_baselines": {
+
+    "expected_skill_count": 20,
+
+    "elite_skill_count": 35
+
+  }
+}

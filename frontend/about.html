@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | ResumeIQ-X</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#030712;color:#e2e8f0;overflow-x:hidden}
+#bgCanvas{position:fixed;inset:0;z-index:0}
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1rem 3rem;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(3,7,18,0.8);backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(99,102,241,.15);
+}
+.logo{display:flex;align-items:center;gap:.7rem;font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;background:linear-gradient(135deg,#fff,#a5b4fc);-webkit-background-clip:text;background-clip:text;color:transparent;text-decoration:none}
+.logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 0 20px rgba(99,102,241,.5)}
+nav a{color:rgba(255,255,255,.6);text-decoration:none;font-size:.9rem;font-weight:500;padding:.4rem .8rem;border-radius:8px;transition:all .2s;margin-left:.3rem}
+nav a:hover{color:#fff;background:rgba(99,102,241,.2)}
+
+/* HERO */
+.page-hero{
+  position:relative;z-index:10;
+  padding:9rem 2rem 4rem;text-align:center;
+}
+.page-hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2.5rem,5vw,4rem);font-weight:700;
+  background:linear-gradient(135deg,#fff,#a5b4fc,#38bdf8);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:1rem;letter-spacing:-1px;
+}
+.page-hero p{color:rgba(255,255,255,.5);font-size:1.1rem;max-width:600px;margin:0 auto;line-height:1.7}
+
+/* CONTENT */
+.content{position:relative;z-index:10;max-width:1100px;margin:0 auto;padding:2rem 2rem 6rem}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-bottom:1.5rem}
+.info-card{
+  background:rgba(15,23,42,0.7);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.08);border-radius:20px;
+  padding:2rem;transition:all .3s;
+  opacity:0;transform:translateY(30px);
+}
+.info-card.visible{opacity:1;transform:translateY(0);transition:all .6s cubic-bezier(.16,1,.3,1)}
+.info-card:hover{border-color:rgba(99,102,241,.4);box-shadow:0 20px 40px rgba(0,0,0,.4),0 0 0 1px rgba(99,102,241,.15)}
+.card-icon{font-size:2rem;margin-bottom:1rem;display:block}
+.info-card h2{
+  font-size:1.15rem;font-weight:700;margin-bottom:1rem;
+  background:linear-gradient(135deg,#f1f5f9,#a5b4fc);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.info-card p{color:rgba(255,255,255,.5);line-height:1.7;font-size:.9rem}
+.info-card ul{list-style:none;padding:0}
+.info-card li{
+  color:rgba(255,255,255,.6);font-size:.9rem;padding:.4rem 0;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:center;gap:.6rem;transition:all .2s;
+}
+.info-card li:last-child{border-bottom:none}
+.info-card li:hover{color:#a5b4fc;padding-left:.4rem}
+.info-card li::before{content:"→";color:#6366f1;font-size:.8rem;flex-shrink:0}
+
+/* TECH BADGES */
+.tech-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.8rem}
+.tech-badge{
+  background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);
+  border-radius:100px;padding:.3rem .8rem;font-size:.8rem;font-weight:600;color:#a5b4fc;
+}
+
+footer{
+  position:relative;z-index:10;
+  background:rgba(15,23,42,.8);border-top:1px solid rgba(255,255,255,.06);
+  padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+}
+.footer-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;background:linear-gradient(135deg,#a5b4fc,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+footer p{font-size:.85rem;color:rgba(255,255,255,.3)}
+@media(max-width:768px){header{padding:1rem 1.5rem}nav a{display:none}footer{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<header>
+  <a href="index.html" class="logo"><div class="logo-icon">⚡</div>ResumeIQ-X</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="help.html">Help</a>
+    <a href="user_login.html">Login</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <h1>About ResumeIQ-X</h1>
+  <p>An AI-powered cognitive talent intelligence platform built to evaluate, predict, and accelerate career trajectories.</p>
+</div>
+
+<div class="content">
+  <div class="grid-2">
+    <div class="info-card">
+      <span class="card-icon">🎯</span>
+      <h2>Project Overview</h2>
+      <p>ResumeIQ-X is an AI-powered Resume Intelligence and Career Recommendation System designed to evaluate candidate profiles using semantic analysis, capability modeling, and cognition-layer prediction engines. Built for cloud-native deployment with global accessibility.</p>
+    </div>
+    <div class="info-card">
+      <span class="card-icon">🏗️</span>
+      <h2>Architecture Layers</h2>
+      <ul>
+        <li>Frontend Intelligence UI Layer</li>
+        <li>PHP API Backend Layer</li>
+        <li>Python Semantic Processing Engine</li>
+        <li>Cognition Intelligence Layer</li>
+        <li>Trajectory Prediction Engine</li>
+        <li>Population Ranking Engine</li>
+        <li>Vector Memory Intelligence Layer</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="info-card">
+      <span class="card-icon">🧠</span>
+      <h2>Core AI Pipeline</h2>
+      <ul>
+        <li>Skill Extraction Engine</li>
+        <li>Semantic Role Matching Engine</li>
+        <li>Capability Vector Builder</li>
+        <li>Latent Skill Inference Engine</li>
+        <li>Candidate Signal Profiler</li>
+        <li>Trajectory Predictor</li>
+        <li>Reasoning Signal Engine</li>
+        <li>Decision Explainability Engine</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <span class="card-icon">🎯</span>
+      <h2>System Objectives</h2>
+      <ul>
+        <li>Automated resume skill extraction</li>
+        <li>Semantic job-role alignment</li>
+        <li>Career readiness scoring</li>
+        <li>Latent capability inference</li>
+        <li>Trajectory prediction modeling</li>
+        <li>Admin-controlled evaluation workflow</li>
+        <li>Recruiter decision intelligence</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="info-card">
+      <span class="card-icon">⚙️</span>
+      <h2>Technology Stack</h2>
+      <div class="tech-row">
+        <span class="tech-badge">PHP 8</span>
+        <span class="tech-badge">Python AI</span>
+        <span class="tech-badge">MySQL Railway</span>
+        <span class="tech-badge">Cloudinary</span>
+        <span class="tech-badge">Sentence Transformers</span>
+        <span class="tech-badge">Vector Embeddings</span>
+        <span class="tech-badge">SMTP Email</span>
+        <span class="tech-badge">WebSocket</span>
+      </div>
+    </div>
+    <div class="info-card">
+      <span class="card-icon">🌐</span>
+      <h2>System Applications</h2>
+      <ul>
+        <li>AI Resume Analyzer Platforms</li>
+        <li>Campus Placement Systems</li>
+        <li>Recruitment Automation Engines</li>
+        <li>Career Advisory Systems</li>
+        <li>Talent Intelligence Research</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">⚡ ResumeIQ-X</div>
+  <p>© 2026 ResumeIQ-X — AI Resume Intelligence & Career Recommendation Engine</p>
+</footer>
+
+<script>
+const canvas=document.getElementById('bgCanvas');
+const ctx=canvas.getContext('2d');
+let W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+function draw(){
+  ctx.clearRect(0,0,W,H);ctx.fillStyle='#030712';ctx.fillRect(0,0,W,H);
+  [[.1,.2,500,'99,102,241',.08],[.9,.8,400,'6,182,212',.06],[.5,.5,300,'139,92,246',.05]].forEach(([x,y,r,c,a])=>{
+    const g=ctx.createRadialGradient(x*W,y*H,0,x*W,y*H,r);
+    g.addColorStop(0,`rgba(${c},${a})`);g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1});
+document.querySelectorAll('.info-card').forEach((el,i)=>{el.style.transitionDelay=i*.08+'s';obs.observe(el)});
+</script>
+</body>
+</html>

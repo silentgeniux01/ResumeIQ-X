@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help Center | ResumeIQ-X</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#030712;color:#e2e8f0;overflow-x:hidden}
+#bgCanvas{position:fixed;inset:0;z-index:0}
+header{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(3,7,18,0.8);backdrop-filter:blur(24px);border-bottom:1px solid rgba(99,102,241,.15)}
+.logo{display:flex;align-items:center;gap:.7rem;font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;background:linear-gradient(135deg,#fff,#a5b4fc);-webkit-background-clip:text;background-clip:text;color:transparent;text-decoration:none}
+.logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 0 20px rgba(99,102,241,.5)}
+nav a{color:rgba(255,255,255,.6);text-decoration:none;font-size:.9rem;font-weight:500;padding:.4rem .8rem;border-radius:8px;transition:all .2s;margin-left:.3rem}
+nav a:hover{color:#fff;background:rgba(99,102,241,.2)}
+.page-hero{position:relative;z-index:10;padding:9rem 2rem 4rem;text-align:center}
+.page-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;background:linear-gradient(135deg,#fff,#a5b4fc,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:1rem;letter-spacing:-1px}
+.page-hero p{color:rgba(255,255,255,.5);font-size:1.1rem;max-width:600px;margin:0 auto;line-height:1.7}
+.content{position:relative;z-index:10;max-width:1100px;margin:0 auto;padding:2rem 2rem 6rem}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-bottom:1.5rem}
+.help-card{
+  background:rgba(15,23,42,0.7);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.08);border-radius:20px;
+  padding:2rem;transition:all .3s;
+  opacity:0;transform:translateY(30px);
+}
+.help-card.visible{opacity:1;transform:translateY(0);transition:all .6s cubic-bezier(.16,1,.3,1)}
+.help-card:hover{border-color:rgba(99,102,241,.4);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.card-icon{font-size:2rem;margin-bottom:1rem;display:block}
+.help-card h2{font-size:1.1rem;font-weight:700;margin-bottom:1rem;background:linear-gradient(135deg,#f1f5f9,#a5b4fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.steps-list{list-style:none;padding:0;counter-reset:step}
+.steps-list li{
+  color:rgba(255,255,255,.6);font-size:.9rem;padding:.5rem 0 .5rem 2.2rem;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  position:relative;counter-increment:step;transition:all .2s;
+}
+.steps-list li:last-child{border-bottom:none}
+.steps-list li::before{
+  content:counter(step);
+  position:absolute;left:0;top:.5rem;
+  width:1.4rem;height:1.4rem;border-radius:50%;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:700;color:#fff;
+}
+.steps-list li:hover{color:#a5b4fc;padding-left:2.5rem}
+.plain-list{list-style:none;padding:0}
+.plain-list li{color:rgba(255,255,255,.6);font-size:.9rem;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;gap:.6rem;transition:all .2s}
+.plain-list li:last-child{border-bottom:none}
+.plain-list li::before{content:"→";color:#6366f1;font-size:.8rem;flex-shrink:0}
+.plain-list li:hover{color:#a5b4fc;padding-left:.4rem}
+
+/* STATUS LEGEND */
+.status-legend{display:flex;flex-direction:column;gap:.6rem;margin-top:.5rem}
+.status-item{display:flex;align-items:center;gap:.8rem;padding:.5rem .8rem;border-radius:8px;background:rgba(255,255,255,.03)}
+.status-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.dot-pending{background:#f59e0b;box-shadow:0 0 8px #f59e0b}
+.dot-processing{background:#0ea5e9;box-shadow:0 0 8px #0ea5e9}
+.dot-completed{background:#10b981;box-shadow:0 0 8px #10b981}
+.status-text{font-size:.85rem;color:rgba(255,255,255,.6)}
+.status-text strong{color:#f1f5f9}
+
+footer{position:relative;z-index:10;background:rgba(15,23,42,.8);border-top:1px solid rgba(255,255,255,.06);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;background:linear-gradient(135deg,#a5b4fc,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+footer p{font-size:.85rem;color:rgba(255,255,255,.3)}
+@media(max-width:768px){header{padding:1rem 1.5rem}nav a{display:none}footer{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<header>
+  <a href="index.html" class="logo"><div class="logo-icon">⚡</div>ResumeIQ-X</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="user_login.html">Login</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <h1>Help Center</h1>
+  <p>Everything you need to know about using ResumeIQ-X effectively.</p>
+</div>
+
+<div class="content">
+  <div class="grid-2">
+    <div class="help-card">
+      <span class="card-icon">🎓</span>
+      <h2>Candidate Workflow</h2>
+      <ol class="steps-list">
+        <li>Register your account with email verification</li>
+        <li>Verify your email via OTP</li>
+        <li>Login to your workspace</li>
+        <li>Upload your resume file</li>
+        <li>Wait for admin AI evaluation</li>
+        <li>View your intelligence report in dashboard</li>
+      </ol>
+    </div>
+    <div class="help-card">
+      <span class="card-icon">👑</span>
+      <h2>Admin Workflow</h2>
+      <ol class="steps-list">
+        <li>Register admin account with OTP verification</li>
+        <li>Login to admin portal</li>
+        <li>View candidate queue in dashboard</li>
+        <li>Trigger AI resume analysis</li>
+        <li>Monitor real-time progress</li>
+        <li>Results auto-released to candidates</li>
+      </ol>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="help-card">
+      <span class="card-icon">🏢</span>
+      <h2>Recruiter Workflow</h2>
+      <ol class="steps-list">
+        <li>Open recruiter dashboard</li>
+        <li>View candidate intelligence metrics</li>
+        <li>Check domain distribution charts</li>
+        <li>Evaluate role compatibility scores</li>
+        <li>Inspect learning roadmap suggestions</li>
+      </ol>
+    </div>
+    <div class="help-card">
+      <span class="card-icon">📁</span>
+      <h2>Supported Formats</h2>
+      <ul class="plain-list">
+        <li>PDF — Recommended format</li>
+        <li>DOCX — Microsoft Word</li>
+        <li>TXT — Plain text</li>
+        <li>PNG — Resume image</li>
+        <li>JPG / JPEG — Photo format</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="help-card">
+      <span class="card-icon">🔴</span>
+      <h2>Status Meanings</h2>
+      <div class="status-legend">
+        <div class="status-item"><div class="status-dot dot-pending"></div><div class="status-text"><strong>Pending</strong> — Resume uploaded, awaiting admin review</div></div>
+        <div class="status-item"><div class="status-dot dot-processing"></div><div class="status-text"><strong>Processing</strong> — AI engine running analysis</div></div>
+        <div class="status-item"><div class="status-dot dot-completed"></div><div class="status-text"><strong>Completed</strong> — Report ready, dashboard unlocked</div></div>
+      </div>
+    </div>
+    <div class="help-card">
+      <span class="card-icon">🔧</span>
+      <h2>Troubleshooting</h2>
+      <ul class="plain-list">
+        <li>Ensure resume file is valid and not corrupted</li>
+        <li>Check your internet connection</li>
+        <li>Wait if admin evaluation is pending</li>
+        <li>Refresh dashboard if results not visible</li>
+        <li>Check spam folder for OTP emails</li>
+        <li>Use Gmail App Password for SMTP</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">⚡ ResumeIQ-X</div>
+  <p>© 2026 ResumeIQ-X Help Center — AI Resume Intelligence Platform</p>
+</footer>
+
+<script>
+const canvas=document.getElementById('bgCanvas');
+const ctx=canvas.getContext('2d');
+let W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+function draw(){
+  ctx.clearRect(0,0,W,H);ctx.fillStyle='#030712';ctx.fillRect(0,0,W,H);
+  [[.1,.2,500,'99,102,241',.08],[.9,.8,400,'6,182,212',.06]].forEach(([x,y,r,c,a])=>{
+    const g=ctx.createRadialGradient(x*W,y*H,0,x*W,y*H,r);
+    g.addColorStop(0,`rgba(${c},${a})`);g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1});
+document.querySelectorAll('.help-card').forEach((el,i)=>{el.style.transitionDelay=i*.08+'s';obs.observe(el)});
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify Chat Fix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+        h1 { color: #6366f1; }
+        .result {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            white-space: pre-wrap;
+        }
+        .success { border-color: #22c55e; color: #22c55e; }
+        .error { border-color: #ef4444; color: #ef4444; }
+        button {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Chat Fix Verification</h1>
+    
+    <div class="result">
+        <strong>Current Location:</strong>
+        <div id="location"></div>
+    </div>
+
+    <div class="result">
+        <strong>Constructed API URL:</strong>
+        <div id="apiUrl"></div>
+    </div>
+
+    <button onclick="testAPI()">Test API Connection</button>
+
+    <div id="testResult" class="result" style="display:none;"></div>
+
+    <script>
+        // Show current location
+        document.getElementById('location').textContent = window.location.href;
+
+        // Show constructed API URL
+        const protocol = window.location.protocol;
+        const host = window.location.host;
+        const pathname = window.location.pathname;
+        
+        let currentDir = pathname.substring(0, pathname.lastIndexOf('/') + 1);
+        let projectRoot = currentDir.substring(0, currentDir.lastIndexOf('/', currentDir.length - 2) + 1);
+        const apiUrl = `${protocol}//${host}${projectRoot}backend_php/ai_chat.php`;
+        
+        document.getElementById('apiUrl').textContent = apiUrl;
+
+        async function testAPI() {
+            const resultDiv = document.getElementById('testResult');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.textContent = 'Testing... Please wait...';
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: 'Test message from verification script',
+                        history: []
+                    })
+                });
+
+                console.log('Response status:', response.status);
+                console.log('Response URL:', response.url);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log('Response data:', data);
+
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ SUCCESS!\n\nProvider: ${data.provider}\n\nResponse:\n${data.message}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ API Error:\n${data.message}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ Connection Error:\n${error.message}\n\nCheck console for details.`;
+                console.error('Full error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

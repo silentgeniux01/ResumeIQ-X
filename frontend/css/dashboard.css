@@ -1,0 +1,486 @@
+/* ======================================================
+ResumeIQ-X Dashboard Styling System
+Semantic Talent Intelligence UI Layer
+Production Grade Analytics Dashboard
+====================================================== */
+
+
+/* ======================================================
+PAGE CONTAINER
+====================================================== */
+
+.dashboard-container{
+
+padding:50px 70px;
+
+max-width:1400px;
+
+margin:auto;
+
+}
+
+
+/* ======================================================
+SECTION TITLES
+====================================================== */
+
+.section-title{
+
+font-size:24px;
+
+font-weight:600;
+
+margin-bottom:20px;
+
+color:#0f172a;
+
+}
+
+
+/* ======================================================
+METRIC CARD GRID
+====================================================== */
+
+.metric-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(240px,1fr));
+
+gap:25px;
+
+margin-bottom:40px;
+
+}
+
+
+/* ======================================================
+METRIC CARD
+====================================================== */
+
+.metric-card{
+
+background:white;
+
+padding:30px;
+
+border-radius:16px;
+
+box-shadow:
+
+0px 10px 30px rgba(0,0,0,0.08);
+
+transition:0.3s ease;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+
+.metric-card:hover{
+
+transform:translateY(-6px);
+
+box-shadow:
+
+0px 18px 45px rgba(0,0,0,0.12);
+
+}
+
+
+/* ======================================================
+METRIC LABEL
+====================================================== */
+
+.metric-title{
+
+font-size:14px;
+
+color:#64748b;
+
+margin-bottom:8px;
+
+}
+
+
+/* ======================================================
+METRIC VALUE
+====================================================== */
+
+.metric-value{
+
+font-size:32px;
+
+font-weight:700;
+
+color:#0f172a;
+
+}
+
+
+/* ======================================================
+TALENT SCORE CARD SPECIAL STYLE
+====================================================== */
+
+.talent-highlight{
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#0ea5e9,
+
+#6366f1
+
+);
+
+color:white;
+
+}
+
+
+.talent-highlight .metric-value{
+
+color:white;
+
+font-size:36px;
+
+}
+
+
+/* ======================================================
+SKILL BADGES CONTAINER
+====================================================== */
+
+.skills-container{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:12px;
+
+margin-bottom:35px;
+
+}
+
+
+/* ======================================================
+SKILL BADGE STYLE
+====================================================== */
+
+.skill-badge{
+
+background:#e0f2fe;
+
+color:#0369a1;
+
+padding:7px 14px;
+
+border-radius:25px;
+
+font-size:13px;
+
+font-weight:500;
+
+transition:0.25s ease;
+
+}
+
+
+.skill-badge:hover{
+
+transform:scale(1.05);
+
+background:#bae6fd;
+
+}
+
+
+/* ======================================================
+ANALYTICS TABLE
+====================================================== */
+
+.analytics-table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:15px;
+
+}
+
+
+.analytics-table th{
+
+background:#f1f5f9;
+
+padding:14px;
+
+text-align:left;
+
+font-size:14px;
+
+color:#475569;
+
+}
+
+
+.analytics-table td{
+
+padding:14px;
+
+border-bottom:1px solid #e2e8f0;
+
+font-size:14px;
+
+color:#0f172a;
+
+}
+
+
+.analytics-table tr:hover{
+
+background:#f8fafc;
+
+}
+
+
+/* ======================================================
+SEMANTIC ALIGNMENT BAR
+====================================================== */
+
+.alignment-bar{
+
+height:8px;
+
+background:#e2e8f0;
+
+border-radius:20px;
+
+overflow:hidden;
+
+margin-top:5px;
+
+}
+
+
+.alignment-progress{
+
+height:100%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#0ea5e9,
+
+#6366f1
+
+);
+
+}
+
+
+/* ======================================================
+SKILL GAP BADGES
+====================================================== */
+
+.gap-badge{
+
+background:#fef9c3;
+
+color:#92400e;
+
+padding:6px 12px;
+
+border-radius:20px;
+
+font-size:12px;
+
+font-weight:500;
+
+margin-right:8px;
+
+}
+
+
+/* ======================================================
+SUCCESS READY INDICATOR
+====================================================== */
+
+.role-ready{
+
+color:#16a34a;
+
+font-weight:600;
+
+}
+
+
+/* ======================================================
+DOMAIN DISTRIBUTION PANEL
+====================================================== */
+
+.domain-card{
+
+background:white;
+
+padding:25px;
+
+border-radius:14px;
+
+box-shadow:
+
+0px 8px 25px rgba(0,0,0,0.08);
+
+margin-bottom:25px;
+
+}
+
+
+/* ======================================================
+DOMAIN ROW
+====================================================== */
+
+.domain-row{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:12px;
+
+}
+
+
+/* ======================================================
+DOMAIN NAME
+====================================================== */
+
+.domain-name{
+
+font-size:14px;
+
+color:#334155;
+
+}
+
+
+/* ======================================================
+DOMAIN PERCENTAGE
+====================================================== */
+
+.domain-score{
+
+font-weight:600;
+
+color:#0f172a;
+
+}
+
+
+/* ======================================================
+SECTION PANEL
+====================================================== */
+
+.dashboard-panel{
+
+background:white;
+
+border-radius:16px;
+
+padding:30px;
+
+margin-bottom:35px;
+
+box-shadow:
+
+0px 10px 30px rgba(0,0,0,0.08);
+
+}
+
+
+/* ======================================================
+PANEL TITLE
+====================================================== */
+
+.panel-title{
+
+font-size:20px;
+
+font-weight:600;
+
+margin-bottom:15px;
+
+}
+
+
+/* ======================================================
+PROGRESS BAR LARGE
+====================================================== */
+
+.progress-large{
+
+height:14px;
+
+background:#e2e8f0;
+
+border-radius:30px;
+
+overflow:hidden;
+
+margin-top:8px;
+
+}
+
+
+.progress-large-fill{
+
+height:100%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#0ea5e9,
+
+#6366f1
+
+);
+
+}
+
+
+/* ======================================================
+RESPONSIVE DESIGN
+====================================================== */
+
+@media(max-width:900px){
+
+.dashboard-container{
+
+padding:30px 20px;
+
+}
+
+.metric-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}

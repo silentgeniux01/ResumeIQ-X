@@ -1,0 +1,146 @@
+{
+  "Data Scientist": {
+    "description": "Build predictive analytics models using statistics machine learning python pandas numpy and data visualization techniques to extract insights from structured and unstructured data",
+    "required_skills": [
+      "python",
+      "pandas",
+      "numpy",
+      "statistics",
+      "machine learning"
+    ],
+    "domain": "data_science",
+    "level": "intermediate",
+    "related_roles": [
+      "AI Engineer",
+      "ML Engineer",
+      "Data Analyst"
+    ]
+  },
+
+  "AI Engineer": {
+    "description": "Design develop and deploy artificial intelligence systems using deep learning neural networks computer vision natural language processing and scalable python frameworks",
+    "required_skills": [
+      "python",
+      "machine learning",
+      "tensorflow",
+      "deep learning"
+    ],
+    "domain": "artificial_intelligence",
+    "level": "advanced",
+    "related_roles": [
+      "ML Engineer",
+      "Research Engineer",
+      "Data Scientist"
+    ]
+  },
+
+  "ML Engineer": {
+    "description": "Develop production grade machine learning pipelines deploy models optimize inference performance and maintain scalable intelligent services",
+    "required_skills": [
+      "python",
+      "machine learning",
+      "numpy",
+      "tensorflow"
+    ],
+    "domain": "artificial_intelligence",
+    "level": "advanced",
+    "related_roles": [
+      "AI Engineer",
+      "Data Scientist"
+    ]
+  },
+
+  "Backend Developer": {
+    "description": "Develop scalable backend infrastructure build APIs manage databases implement authentication systems and design server side architecture using python nodejs mysql and mongodb",
+    "required_skills": [
+      "python",
+      "nodejs",
+      "mysql",
+      "mongodb"
+    ],
+    "domain": "backend_engineering",
+    "level": "intermediate",
+    "related_roles": [
+      "Software Engineer",
+      "Full Stack Developer"
+    ]
+  },
+
+  "Full Stack Developer": {
+    "description": "Build end to end web applications using frontend technologies like html css javascript react and backend technologies such as nodejs databases and REST APIs",
+    "required_skills": [
+      "html",
+      "css",
+      "javascript",
+      "react",
+      "nodejs"
+    ],
+    "domain": "web_development",
+    "level": "intermediate",
+    "related_roles": [
+      "Frontend Developer",
+      "Backend Developer"
+    ]
+  },
+
+  "Frontend Developer": {
+    "description": "Design responsive user interfaces implement modern frontend frameworks optimize browser performance and deliver accessible interactive web experiences",
+    "required_skills": [
+      "html",
+      "css",
+      "javascript",
+      "react"
+    ],
+    "domain": "web_development",
+    "level": "intermediate",
+    "related_roles": [
+      "Full Stack Developer"
+    ]
+  },
+
+  "Software Engineer": {
+    "description": "Design implement test and optimize scalable software systems using object oriented programming algorithms databases and distributed computing techniques",
+    "required_skills": [
+      "java",
+      "c++",
+      "sql"
+    ],
+    "domain": "software_engineering",
+    "level": "core",
+    "related_roles": [
+      "Backend Developer",
+      "Systems Engineer"
+    ]
+  },
+
+  "Data Analyst": {
+    "description": "Analyze datasets generate dashboards perform statistical analysis create visualizations and support business decision making using python sql and reporting tools",
+    "required_skills": [
+      "python",
+      "sql",
+      "statistics",
+      "pandas"
+    ],
+    "domain": "data_science",
+    "level": "core",
+    "related_roles": [
+      "Data Scientist",
+      "Business Analyst"
+    ]
+  },
+
+  "Research Engineer": {
+    "description": "Prototype experimental artificial intelligence models explore new machine learning techniques implement research algorithms and evaluate scientific performance benchmarks",
+    "required_skills": [
+      "python",
+      "machine learning",
+      "deep learning"
+    ],
+    "domain": "artificial_intelligence",
+    "level": "advanced",
+    "related_roles": [
+      "AI Engineer",
+      "ML Engineer"
+    ]
+  }
+}

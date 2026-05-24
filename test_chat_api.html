@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test AI Chat API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+        h1 { color: #6366f1; }
+        .test-section {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        button {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover { opacity: 0.9; }
+        .result {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .success { border-color: #22c55e; color: #22c55e; }
+        .error { border-color: #ef4444; color: #ef4444; }
+        input {
+            width: 100%;
+            padding: 10px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🤖 AI Chat API Test</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Simple API Call</h2>
+        <p>Tests if the backend API is accessible and responding</p>
+        <button onclick="testSimpleCall()">Run Test</button>
+        <div id="result1" class="result" style="display:none;"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: Custom Message</h2>
+        <p>Send your own message to the AI</p>
+        <input type="text" id="customMessage" placeholder="Type your message..." value="What is ResumeIQ-X?">
+        <button onclick="testCustomMessage()">Send Message</button>
+        <div id="result2" class="result" style="display:none;"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Provider Check</h2>
+        <p>Check which LLM providers are configured</p>
+        <button onclick="checkProviders()">Check Providers</button>
+        <div id="result3" class="result" style="display:none;"></div>
+    </div>
+
+    <script>
+        // Detect app root
+        const appRoot = window.location.pathname.includes('/ResumeIQ-X/') 
+            ? '/ResumeIQ-X/' 
+            : '/';
+
+        async function testSimpleCall() {
+            const resultDiv = document.getElementById('result1');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.textContent = 'Testing... Please wait...';
+
+            try {
+                const response = await fetch(appRoot + 'backend_php/ai_chat.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: 'Hello, can you help me?',
+                        history: []
+                    })
+                });
+
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log('Response data:', data);
+
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ SUCCESS!\n\nProvider: ${data.provider}\n\nResponse:\n${data.message}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ API returned error:\n${data.message}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ ERROR:\n${error.message}\n\nCheck browser console for details.`;
+                console.error('Full error:', error);
+            }
+        }
+
+        async function testCustomMessage() {
+            const message = document.getElementById('customMessage').value;
+            const resultDiv = document.getElementById('result2');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.textContent = 'Sending message... Please wait...';
+
+            try {
+                const response = await fetch(appRoot + 'backend_php/ai_chat.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: message,
+                        history: []
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ SUCCESS!\n\nProvider: ${data.provider}\n\nYour message:\n${message}\n\nAI Response:\n${data.message}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ API returned error:\n${data.message}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ ERROR:\n${error.message}`;
+                console.error('Full error:', error);
+            }
+        }
+
+        async function checkProviders() {
+            const resultDiv = document.getElementById('result3');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.textContent = 'Checking providers... This will test each one...';
+
+            const providers = ['groq', 'openai', 'gemini', 'anthropic', 'deepseek', 'ollama'];
+            let results = 'Provider Status Check:\n\n';
+
+            for (const provider of providers) {
+                try {
+                    const response = await fetch(appRoot + 'backend_php/ai_chat.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            message: 'test',
+                            history: []
+                        })
+                    });
+
+                    const data = await response.json();
+                    
+                    if (data.success && data.provider === provider) {
+                        results += `✅ ${provider.toUpperCase()}: Working\n`;
+                        break; // Stop after first working provider
+                    }
+                } catch (error) {
+                    results += `❌ ${provider.toUpperCase()}: ${error.message}\n`;
+                }
+            }
+
+            resultDiv.className = 'result success';
+            resultDiv.textContent = results;
+        }
+
+        // Auto-run first test on load
+        window.addEventListener('load', () => {
+            console.log('App root detected:', appRoot);
+            console.log('API URL:', appRoot + 'backend_php/ai_chat.php');
+        });
+    </script>
+</body>
+</html>

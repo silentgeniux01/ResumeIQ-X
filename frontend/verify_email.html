@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify Email | ResumeIQ-X</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#030712;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1.5rem;overflow:hidden}
+#bgCanvas{position:fixed;inset:0;z-index:0}
+.wrap{position:relative;z-index:10;width:100%;max-width:460px}
+.card{
+  background:rgba(15,23,42,0.85);backdrop-filter:blur(32px);
+  border:1px solid rgba(99,102,241,0.25);border-radius:28px;
+  padding:2.8rem 2.4rem;text-align:center;
+  box-shadow:0 40px 80px rgba(0,0,0,.6);
+  animation:slideUp .6s cubic-bezier(.16,1,.3,1);
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.card-logo{display:flex;align-items:center;justify-content:center;gap:.7rem;margin-bottom:1.8rem}
+.logo-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 0 24px rgba(99,102,241,.5)}
+.logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:700;background:linear-gradient(135deg,#fff,#a5b4fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.email-icon{font-size:3.5rem;display:block;margin-bottom:1rem;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+h2{font-size:1.6rem;font-weight:700;color:#f1f5f9;margin-bottom:.4rem}
+.subtitle{color:rgba(255,255,255,.4);font-size:.88rem;margin-bottom:1rem;line-height:1.6}
+.email-pill{
+  display:inline-block;
+  background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);
+  border-radius:100px;padding:.35rem 1rem;
+  font-size:.85rem;font-weight:600;color:#a5b4fc;
+  margin-bottom:2rem;
+}
+
+/* OTP BOXES */
+.otp-row{display:flex;gap:.6rem;justify-content:center;margin-bottom:1.5rem}
+.otp-box{
+  width:52px;height:60px;
+  background:rgba(255,255,255,.05);
+  border:2px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  text-align:center;font-size:1.6rem;font-weight:700;
+  color:#f1f5f9;font-family:'Space Grotesk',sans-serif;
+  outline:none;transition:all .2s;caret-color:#6366f1;
+}
+.otp-box:focus{
+  background:rgba(99,102,241,.15);
+  border-color:#6366f1;
+  box-shadow:0 0 0 3px rgba(99,102,241,.2),0 0 20px rgba(99,102,241,.3);
+}
+.otp-box.filled{border-color:rgba(99,102,241,.5);background:rgba(99,102,241,.1)}
+
+.btn{
+  width:100%;padding:1rem;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);
+  color:#fff;border:none;border-radius:12px;
+  font-size:1rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;
+  box-shadow:0 0 30px rgba(99,102,241,.4);transition:all .25s;
+}
+.btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 0 50px rgba(99,102,241,.6)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+#msg{margin-top:1rem;font-size:.85rem;min-height:2.2rem;display:flex;align-items:center;justify-content:center}
+.error{color:#fca5a5;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);padding:.4rem .9rem;border-radius:8px;display:inline-block}
+.success{color:#86efac;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);padding:.4rem .9rem;border-radius:8px;display:inline-block}
+.resend-row{margin-top:1.2rem;color:rgba(255,255,255,.4);font-size:.85rem}
+.resend-row a{color:#a5b4fc;cursor:pointer;text-decoration:none;font-weight:600;transition:color .2s}
+.resend-row a:hover{color:#fff}
+#countdown{color:rgba(255,255,255,.3)}
+.back-link{display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:1.5rem;color:rgba(255,255,255,.3);font-size:.85rem;text-decoration:none;transition:color .2s}
+.back-link:hover{color:rgba(255,255,255,.6)}
+@media(max-width:400px){.otp-box{width:42px;height:52px;font-size:1.3rem}}
+</style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<div class="wrap">
+  <div class="card">
+    <div class="card-logo">
+      <div class="logo-icon">⚡</div>
+      <span class="logo-text">ResumeIQ-X</span>
+    </div>
+    <span class="email-icon">✉️</span>
+    <h2>Verify Your Email</h2>
+    <p class="subtitle">We sent a 6-digit code to</p>
+    <div class="email-pill" id="emailDisplay">your email</div>
+
+    <div class="otp-row">
+      <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" id="o1" autofocus>
+      <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" id="o2">
+      <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" id="o3">
+      <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" id="o4">
+      <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" id="o5">
+      <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" id="o6">
+    </div>
+
+    <button class="btn" id="verifyBtn" onclick="verifyOTP()">Verify Email →</button>
+    <div id="msg"></div>
+    <div class="resend-row">
+      Didn't receive it? <a id="resendLink" onclick="resendOTP()">Resend OTP</a>
+      <span id="countdown"></span>
+    </div>
+  </div>
+  <a href="index.html" class="back-link">← Back to home</a>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+const canvas=document.getElementById('bgCanvas');
+const ctx=canvas.getContext('2d');
+let W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+function draw(){
+  ctx.clearRect(0,0,W,H);ctx.fillStyle='#030712';ctx.fillRect(0,0,W,H);
+  [[.2,.3,350,'99,102,241',.12],[.8,.7,300,'6,182,212',.08]].forEach(([x,y,r,c,a])=>{
+    const g=ctx.createRadialGradient(x*W,y*H,0,x*W,y*H,r);
+    g.addColorStop(0,`rgba(${c},${a})`);g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+const params=new URLSearchParams(window.location.search);
+let email=params.get('email')||sessionStorage.getItem('verify_email')||'';
+document.getElementById('emailDisplay').textContent=email||'your email';
+
+const boxes=['o1','o2','o3','o4','o5','o6'].map(id=>document.getElementById(id));
+boxes.forEach((box,i)=>{
+  box.addEventListener('input',()=>{
+    box.value=box.value.replace(/[^0-9]/g,'').slice(-1);
+    box.classList.toggle('filled',!!box.value);
+    if(box.value&&i<5)boxes[i+1].focus();
+  });
+  box.addEventListener('keydown',e=>{
+    if(e.key==='Backspace'&&!box.value&&i>0){boxes[i-1].focus();boxes[i-1].classList.remove('filled')}
+  });
+  box.addEventListener('paste',e=>{
+    e.preventDefault();
+    const pasted=(e.clipboardData||window.clipboardData).getData('text').replace(/\D/g,'');
+    pasted.split('').slice(0,6).forEach((ch,j)=>{if(boxes[j]){boxes[j].value=ch;boxes[j].classList.add('filled')}});
+    boxes[Math.min(pasted.length,5)].focus();
+  });
+});
+
+function getOTP(){return boxes.map(b=>b.value).join('')}
+
+async function verifyOTP(){
+  const otp=getOTP();
+  const msg=document.getElementById('msg');
+  const btn=document.getElementById('verifyBtn');
+  if(otp.length!==6){msg.innerHTML="<span class='error'>Please enter all 6 digits</span>";return}
+  btn.disabled=true;btn.textContent='Verifying...';msg.innerHTML='';
+  try{
+    const res=await fetch(apiUrl('verify_email.php'),{
+      method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:'action=verify&email='+encodeURIComponent(email)+'&otp='+encodeURIComponent(otp)
+    });
+    const data=await res.json();
+    if(!data.status){msg.innerHTML="<span class='error'>"+data.message+"</span>";btn.disabled=false;btn.textContent='Verify Email →';return}
+    msg.innerHTML="<span class='success'>✓ "+data.message+"</span>";
+    sessionStorage.removeItem('verify_email');
+    setTimeout(()=>window.location.href=data.redirect||'user_login.html',1800);
+  }catch(e){msg.innerHTML="<span class='error'>Server error. Please try again.</span>";btn.disabled=false;btn.textContent='Verify Email →'}
+}
+
+let cooldown=0,timer=null;
+function startCooldown(s){
+  cooldown=s;
+  const link=document.getElementById('resendLink');
+  const cd=document.getElementById('countdown');
+  link.style.pointerEvents='none';link.style.opacity='.4';
+  timer=setInterval(()=>{
+    cooldown--;cd.textContent=' ('+cooldown+'s)';
+    if(cooldown<=0){clearInterval(timer);cd.textContent='';link.style.pointerEvents='auto';link.style.opacity='1'}
+  },1000);
+}
+
+async function resendOTP(){
+  if(cooldown>0)return;
+  const msg=document.getElementById('msg');msg.innerHTML='';
+  try{
+    const res=await fetch(apiUrl('verify_email.php'),{
+      method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:'action=resend&email='+encodeURIComponent(email)
+    });
+    const data=await res.json();
+    if(data.status){msg.innerHTML="<span class='success'>✓ New OTP sent to your email</span>";startCooldown(60)}
+    else{msg.innerHTML="<span class='error'>"+data.message+"</span>"}
+  }catch(e){msg.innerHTML="<span class='error'>Failed to resend. Try again.</span>"}
+}
+</script>
+</body>
+</html>

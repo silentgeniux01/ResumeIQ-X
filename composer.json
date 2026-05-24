@@ -1,0 +1,14 @@
+{
+    "name": "resumeiq-x/resume-analysis",
+    "description": "ResumeIQ-X - AI-Powered Resume Analysis Platform",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "smalot/pdfparser": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ResumeIQ\\": "backend_php/"
+        }
+    }
+}

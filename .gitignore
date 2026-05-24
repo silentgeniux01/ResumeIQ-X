@@ -1,0 +1,64 @@
+# ============================================
+# ResumeIQ-X — .gitignore
+# ============================================
+
+# Environment & secrets — NEVER commit
+.env
+.env.local
+.env.production
+config/db_config.json
+node_api/.env
+
+# PHP Composer
+vendor/
+composer.lock
+
+# Python virtual environments & cache
+ai_engine_python/venv/
+ai_engine_python/__pycache__/
+ai_engine_python/**/__pycache__/
+ai_engine_python/**/**/__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node modules
+node_modules/
+node_api/node_modules/
+
+# Uploaded files (stored on Cloudinary in production)
+uploads/
+ai_engine_python/uploads/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Kiro internal
+.kiro/
+
+# Python embeddings (large binary files)
+ai_engine_python/cognition_layer/embeddings/
+
+# Analysis outputs (runtime generated)
+ai_engine_python/analysis_outputs/
+
+# Debug files
+backend_php/debug_php.php
+frontend/debug_html.py
+ai_engine_python/debug_python.py
+database/debug_sql.py
+xampp/
+venv/
+vendor/
+node_modules/
+ai_engine_python/vector_memory/venv/

@@ -1,0 +1,12 @@
+Please test this URL in your browser:
+
+https://resumeiq-x-production.up.railway.app/backend_php/recruiter_login.php
+
+This will tell us if the endpoint exists and is accessible.
+
+If you get a JSON response like:
+{"status":false,"message":"Method not allowed"}
+
+Then the endpoint exists and is working (it just requires POST method).
+
+If you get a 404 error, then the file doesn't exist on Railway.

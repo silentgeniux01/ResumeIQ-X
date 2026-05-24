@@ -1,0 +1,231 @@
+{
+  "ontology_version": "1.0.0",
+
+  "domains": {
+
+    "artificial_intelligence": {
+
+      "description": "AI modeling, learning systems, intelligent automation",
+
+      "skills": {
+
+        "machine_learning": {
+          "aliases": ["ml"],
+          "level": "core",
+          "related_skills": [
+            "python",
+            "statistics",
+            "data_science"
+          ]
+        },
+
+        "deep_learning": {
+          "aliases": ["neural networks"],
+          "level": "advanced",
+          "related_skills": [
+            "tensorflow",
+            "pytorch"
+          ]
+        },
+
+        "nlp": {
+          "aliases": ["natural language processing"],
+          "level": "advanced",
+          "related_skills": [
+            "transformers",
+            "bert",
+            "tokenization"
+          ]
+        },
+
+        "computer_vision": {
+          "aliases": [],
+          "level": "advanced",
+          "related_skills": [
+            "opencv",
+            "image_processing"
+          ]
+        }
+
+      }
+
+    },
+
+
+    "data_science": {
+
+      "description": "analytics, statistics, predictive modeling",
+
+      "skills": {
+
+        "python": {
+          "aliases": [],
+          "level": "core",
+          "related_skills": [
+            "pandas",
+            "numpy"
+          ]
+        },
+
+        "pandas": {
+          "aliases": [],
+          "level": "core",
+          "related_skills": [
+            "data_cleaning"
+          ]
+        },
+
+        "numpy": {
+          "aliases": [],
+          "level": "core",
+          "related_skills": [
+            "matrix_operations"
+          ]
+        },
+
+        "statistics": {
+          "aliases": [],
+          "level": "core",
+          "related_skills": [
+            "probability",
+            "hypothesis_testing"
+          ]
+        }
+
+      }
+
+    },
+
+
+    "web_development": {
+
+      "description": "frontend and backend web systems",
+
+      "skills": {
+
+        "html": {
+          "aliases": [],
+          "level": "core",
+          "related_skills": [
+            "css"
+          ]
+        },
+
+        "css": {
+          "aliases": [],
+          "level": "core",
+          "related_skills": [
+            "responsive_design"
+          ]
+        },
+
+        "javascript": {
+          "aliases": ["js"],
+          "level": "core",
+          "related_skills": [
+            "react",
+            "nodejs"
+          ]
+        },
+
+        "react": {
+          "aliases": [],
+          "level": "advanced",
+          "related_skills": [
+            "frontend_architecture"
+          ]
+        },
+
+        "nodejs": {
+          "aliases": ["node"],
+          "level": "advanced",
+          "related_skills": [
+            "express"
+          ]
+        }
+
+      }
+
+    },
+
+
+    "backend_engineering": {
+
+      "description": "server infrastructure and APIs",
+
+      "skills": {
+
+        "django": {
+          "aliases": [],
+          "level": "advanced",
+          "related_skills": [
+            "python",
+            "rest_api"
+          ]
+        },
+
+        "flask": {
+          "aliases": [],
+          "level": "advanced",
+          "related_skills": [
+            "python"
+          ]
+        },
+
+        "mysql": {
+          "aliases": [],
+          "level": "core",
+          "related_skills": [
+            "sql"
+          ]
+        },
+
+        "mongodb": {
+          "aliases": [],
+          "level": "core",
+          "related_skills": [
+            "nosql"
+          ]
+        }
+
+      }
+
+    },
+
+
+    "software_engineering": {
+
+      "description": "general programming and system design",
+
+      "skills": {
+
+        "java": {
+          "aliases": [],
+          "level": "core",
+          "related_skills": [
+            "oop"
+          ]
+        },
+
+        "c++": {
+          "aliases": ["cpp"],
+          "level": "core",
+          "related_skills": [
+            "data_structures"
+          ]
+        },
+
+        "sql": {
+          "aliases": [],
+          "level": "core",
+          "related_skills": [
+            "query_optimization"
+          ]
+        }
+
+      }
+
+    }
+
+  }
+}

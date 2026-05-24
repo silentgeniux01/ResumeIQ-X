@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login | ResumeIQ-X</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',sans-serif;background:#030712;
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;overflow:hidden;
+}
+#bgCanvas{position:fixed;inset:0;z-index:0}
+.wrap{position:relative;z-index:10;width:100%;max-width:440px}
+.card{
+  background:rgba(10,15,30,0.9);backdrop-filter:blur(32px);
+  border:1px solid rgba(139,92,246,0.3);border-radius:28px;
+  padding:2.8rem 2.4rem;
+  box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 60px rgba(139,92,246,.1) inset;
+  animation:slideUp .6s cubic-bezier(.16,1,.3,1);
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+
+/* ADMIN BADGE */
+.admin-badge{
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.4);
+  border-radius:100px;padding:.4rem 1.2rem;margin-bottom:1.8rem;
+  font-size:.75rem;font-weight:700;letter-spacing:1.5px;
+  color:#c4b5fd;text-transform:uppercase;
+}
+.badge-shield{font-size:1rem}
+
+.card-logo{display:flex;align-items:center;justify-content:center;gap:.7rem;margin-bottom:1.5rem}
+.logo-icon{
+  width:48px;height:48px;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+  box-shadow:0 0 30px rgba(139,92,246,.6);
+}
+.logo-text{
+  font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;
+  background:linear-gradient(135deg,#fff,#c4b5fd);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+h2{text-align:center;font-size:1.6rem;font-weight:700;color:#f1f5f9;margin-bottom:.3rem}
+.subtitle{text-align:center;color:rgba(255,255,255,.4);font-size:.88rem;margin-bottom:2rem}
+
+.field{position:relative;margin-bottom:1rem}
+.field-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-size:.95rem;color:rgba(255,255,255,.3);pointer-events:none;transition:color .2s}
+.field:focus-within .field-icon{color:#8b5cf6}
+input{
+  width:100%;padding:.9rem 1rem .9rem 2.8rem;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;color:#f1f5f9;font-size:.95rem;font-family:'Inter',sans-serif;
+  outline:none;transition:all .2s;
+}
+input:focus{background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.5);box-shadow:0 0 0 3px rgba(139,92,246,.15)}
+input::placeholder{color:rgba(255,255,255,.25)}
+input:-webkit-autofill,input:-webkit-autofill:focus{transition:background-color 600000s 0s,color 600000s 0s}
+
+.btn{
+  width:100%;padding:1rem;margin-top:.5rem;
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  color:#fff;border:none;border-radius:12px;
+  font-size:1rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;
+  box-shadow:0 0 30px rgba(139,92,246,.4);transition:all .25s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(139,92,246,.6)}
+
+#msg{
+  text-align:center;margin-top:1rem;font-size:.85rem;min-height:2.2rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.error{color:#fca5a5;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);padding:.4rem .9rem;border-radius:8px;display:inline-block}
+.success{color:#86efac;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);padding:.4rem .9rem;border-radius:8px;display:inline-block}
+
+.links{display:flex;justify-content:space-between;margin-top:1.2rem}
+.links a{color:rgba(196,181,253,.6);font-size:.85rem;text-decoration:none;transition:color .2s}
+.links a:hover{color:#c4b5fd}
+.back-link{display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:1.5rem;color:rgba(255,255,255,.3);font-size:.85rem;text-decoration:none;transition:color .2s}
+.back-link:hover{color:rgba(255,255,255,.6)}
+</style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<div class="wrap">
+  <div class="card">
+    <div class="admin-badge"><span class="badge-shield">🛡️</span> Admin Portal</div>
+    <div class="card-logo">
+      <div class="logo-icon">👑</div>
+      <span class="logo-text">ResumeIQ-X</span>
+    </div>
+    <h2>Admin Sign In</h2>
+    <p class="subtitle">Secure access to the enterprise control panel</p>
+
+    <div class="field"><span class="field-icon">📧</span><input type="email" id="email" placeholder="Admin email" autocomplete="username"></div>
+    <div class="field"><span class="field-icon">🔒</span><input type="password" id="password" placeholder="Password" autocomplete="current-password"></div>
+
+    <button class="btn" onclick="adminLogin()">Access Admin Panel →</button>
+    <div id="msg"></div>
+    <div class="links">
+      <a href="forgot_password.html">Forgot password?</a>
+      <a href="admin_register.html">Create admin account</a>
+    </div>
+  </div>
+  <a href="index.html" class="back-link">← Back to home</a>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+const canvas=document.getElementById('bgCanvas');
+const ctx=canvas.getContext('2d');
+let W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+function draw(){
+  ctx.clearRect(0,0,W,H);ctx.fillStyle='#030712';ctx.fillRect(0,0,W,H);
+  [[.2,.3,400,'139,92,246',.14],[.8,.7,350,'99,102,241',.08],[.5,.0,200,'168,85,247',.1]].forEach(([x,y,r,c,a])=>{
+    const g=ctx.createRadialGradient(x*W,y*H,0,x*W,y*H,r);
+    g.addColorStop(0,`rgba(${c},${a})`);g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+async function adminLogin(){
+  const email=document.getElementById('email').value.trim();
+  const password=document.getElementById('password').value.trim();
+  const msg=document.getElementById('msg');
+  if(!email||!password){msg.innerHTML="<span class='error'>Email and password required</span>";return}
+  try{
+    const res=await fetch(apiUrl('admin_login.php'),{
+      method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:'email='+encodeURIComponent(email)+'&password='+encodeURIComponent(password)
+    });
+    const result=await res.json();
+    if(!result.status){
+      if(result.needs_verification&&result.email){
+        msg.innerHTML="<span class='error'>"+result.message+"</span>";
+        sessionStorage.setItem('verify_email',result.email);
+        setTimeout(()=>window.location.href='verify_email.html?email='+encodeURIComponent(result.email),2000);
+        return;
+      }
+      msg.innerHTML="<span class='error'>"+result.message+"</span>";return;
+    }
+    msg.innerHTML="<span class='success'>✓ Access granted — loading dashboard...</span>";
+    setTimeout(()=>window.location.href='admin_dashboard.php',1000);
+  }catch(e){msg.innerHTML="<span class='error'>Server error. Please try again.</span>"}
+}
+document.addEventListener('keydown',e=>{if(e.key==='Enter')adminLogin()});
+</script>
+</body>
+</html>

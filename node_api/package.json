@@ -1,0 +1,28 @@
+{
+  "name": "resumeiqx-node-api",
+  "version": "1.0.0",
+  "description": "ResumeIQ-X AI pipeline worker server",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "resumeiqx",
+    "ai",
+    "resume-analysis",
+    "pipeline",
+    "node-worker"
+  ],
+  "author": "Mayur Kove",
+  "license": "ISC",
+  "dependencies": {
+    "cloudinary": "^2.9.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "multer": "^2.1.1",
+    "mysql2": "^3.22.1",
+    "ws": "^8.20.0"
+  }
+}

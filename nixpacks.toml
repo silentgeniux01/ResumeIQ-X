@@ -1,0 +1,13 @@
+[phases.setup]
+nixPkgs = ["php82", "php82Extensions.pdo", "php82Extensions.pdo_mysql", "php82Extensions.mysqli", "php82Extensions.mbstring", "php82Extensions.gd", "php82Extensions.zip", "php82Extensions.fileinfo", "php82Packages.composer", "nodejs-18_x", "python311", "python311Packages.pip"]
+
+[phases.install]
+cmds = [
+    "mkdir -p uploads/resumes ai_engine_python/uploads/resumes ai_engine_python/analysis_outputs",
+    "composer install --no-dev --optimize-autoloader --no-interaction || true",
+    "(cd node_api && npm install --omit=dev --legacy-peer-deps) || true",
+    "(cd ai_engine_python && pip install --no-cache-dir PyMuPDF pdfplumber requests python-dotenv) || true"
+]
+
+[start]
+cmd = "bash start.sh"

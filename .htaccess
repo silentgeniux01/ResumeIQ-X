@@ -1,0 +1,26 @@
+Options -Indexes
+RewriteEngine On
+
+# Redirect root to frontend
+RewriteRule ^$ /frontend/index.html [R=302,L]
+RewriteRule ^index\.html$ /frontend/index.html [R=302,L]
+
+# Redirect analysis_result_viewer.php from root to frontend directory
+RewriteCond %{REQUEST_URI} ^/analysis_result_viewer\.php
+RewriteRule ^analysis_result_viewer\.php$ /frontend/analysis_result_viewer.php [R=301,L,QSA]
+
+# Security — block access to sensitive files
+<FilesMatch "\.(env|log|sql|json|md|gitignore|gitattributes)$">
+    Require all denied
+</FilesMatch>
+
+# Block access to backend config directly
+<FilesMatch "^(config|db)\.php$">
+    Require all denied
+</FilesMatch>
+
+# Allow CORS for API calls from same origin
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
