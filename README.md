@@ -1,4 +1,4 @@
-# ResumeIQ-X 🚀
+# ResumeIQ-X 🚀  ( Creator : Mayur G. Kove )
 
 **AI-Powered Talent Intelligence Platform**
 
